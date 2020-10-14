@@ -93,4 +93,21 @@ describe("Catalogue", () => {
           
         });
     });
+    describe("searchF", () => {
+      beforeEach(function () {
+
+       
+        cat.addProduct(new Product("A130", "shoulder bag", 100, 2, 12.0));
+        cat.addProduct(new Product("A131", "Product 1", 100, 2, 25.0));
+        cat.addProduct(new Product("A132", "sh 2", 100, 2, 29.0));
+       
+       
+      });
+  
+  
+      it("should return the products whose price is less than (or equal to) the specified value When the key is price", function () {
+        const result = cat.searchF("25.01");
+         expect(result.pPrice).to.have.members([10,10,12,25.0]);
+      });
+    });
 });

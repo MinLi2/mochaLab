@@ -48,6 +48,13 @@ class Catalogue {
       .reduce((acc, p) => acc + 1, 0);
     return noProductsAdded;
   }
+  searchF(price) {
+    const result = { pPrice: [] };
+    result.pPrice = this.products
+        .filter((product) => product.price <= price)
+        .map((product) => product.price);
+    return result;
+  }
 
 }
 
