@@ -48,12 +48,22 @@ class Catalogue {
       .reduce((acc, p) => acc + 1, 0);
     return noProductsAdded;
   }
-  searchF(price) {
-    const result = { pPrice: [] };
-    result.pPrice = this.products
-        .filter((product) => product.price <= price)
-        .map((product) => product.price);
-    return result;
+  searchF(key) {
+    const result = {type:"Search", FinalProducts:[] }
+    if(key.price !== undefined){
+      result.FinalProducts = this.products
+      .filter((product) => product.price <= key.price)
+      .map((product) => product.price);
+      return result;
+    }if (key.keywords !== undefined){
+      result.FinalProducts = this.products
+      .filter((product) => product.name.search(key.keywords) >=0 )
+      .map((product) => product.name);
+      return result;
+    }else if(!(key.price||key.keywords)){
+         throw new Error('Bad key')
+    }
+
   }
 
 }
