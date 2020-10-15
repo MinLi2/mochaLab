@@ -114,6 +114,12 @@ describe("Catalogue", () => {
           const result = cat.searchF({keywords:"sho"});
           expect(result.FinalProducts).to.have.members(["shoulder bag"]);
         });
+        it("should throw an exception If the criteria object has neither key then an exception should be thrown with the message Bad search", function () {
+          
+         expect(() => cat.searchF({Mainwords:"Widget"}).to.throw("Bad key"));
+        
+       
+       });
     });
 });
 
